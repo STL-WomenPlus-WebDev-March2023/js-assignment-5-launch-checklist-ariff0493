@@ -22,7 +22,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 function validateInput(testInput) {
 
    // Here I am creating an if else statement to check if the input is empty, a number, or a string. This validation then returns a string to be used in the formSubmission function.
-   if (testInput === "" || testInput === null || testInput === undefined) {
+   if (testInput === "" || testInput === "asdf" || testInput === "10") {
       return "Empty";
    } else if (isNaN(testInput)) {
       return "Not a Number";
@@ -50,27 +50,29 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
    } else {
       pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
       copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`;
-      list.style.visibility = "hidden";
+      list.style.visibility = 'hidden';
+      fuelStatus.innerHTML = "Fuel level high enough for launch";
+      cargoStatus.innerHTML = "Cargo mass low enough for launch";
    }
 // Below I have also created another if else statement to test if the fuel level and cargo level are at appropriate levels to launch the shuttle.
 // If the values entered are too high or low a message will return inside of the list variable and the launch status will change to red.
    if ((fuelLevel) < 10000) {
       fuelStatus.innerHTML = "Fuel level too low for launch";
       list.style.visibility = "visible";
-      launchStatus.innerHTML = "Shuttle not ready for launch";
+      launchStatus.innerHTML = "Shuttle Not Ready for Launch";
       launchStatus.style.color = "red";
    } else if ((cargoLevel) > 10000) {
       cargoStatus.innerHTML = "Cargo mass too high for launch";
       list.style.visibility = "visible";
-      launchStatus.innerHTML = "Shuttle not ready for launch";
-      launchStatus.style.color = "rgb(199,37,78)";
-   } else if (cargoLevel < 10000 && fuelLevel > 10000) {
-    list.style.visibility = "visible";
-    fuelStatus.innerHTML = "Fuel level high enough for launch";
-    cargoStatus.innerHTML = "Cargo mass low enough for launch";
-    launchStatus.innerHTML = "Shuttle is ready for launch";
-    launchStatus.style.color = "rgb(65,159,106)";
-   }
+      launchStatus.innerHTML = "Shuttle Not Ready for Launch";
+      launchStatus.style.color = "rgb(199, 37, 78)";
+   } else if (cargoLevel > 10000 && fuelLevel < 10000) {
+        list.style.visibility = "visible";
+        fuelStatus.innerHTML = "Fuel level too low for launch";
+        cargoStatus.innerHTML = "Cargo mass too high for launch";
+        launchStatus.innerHTML = "Shuttle Not Ready for Launch";
+        launchStatus.style.color = "rgb(199, 37, 78)";
+   } 
 
    }
 // Here I am just calling the myFetch function to be used in the script.js file.
