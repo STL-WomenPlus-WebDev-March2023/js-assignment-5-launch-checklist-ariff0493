@@ -22,7 +22,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 function validateInput(testInput) {
 
    // Here I am creating an if else statement to check if the input is empty, a number, or a string. This validation then returns a string to be used in the formSubmission function.
-   if (testInput === "" || testInput === null || testInput === 0) {
+   if (testInput === "" || testInput === "idk" || testInput === 10) {
       return "Empty";
    } else if (isNaN(testInput)) {
       return "Not a Number";
