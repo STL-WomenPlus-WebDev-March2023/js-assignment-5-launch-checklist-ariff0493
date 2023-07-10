@@ -22,7 +22,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 function validateInput(testInput) {
 
    // Here I am creating an if else statement to check if the input is empty, a number, or a string. This validation then returns a string to be used in the formSubmission function.
-   if (testInput === "" || testInput === "asdf" || testInput === "10") {
+   if (testInput === "" || testInput === null || testInput === 0) {
       return "Empty";
    } else if (isNaN(testInput)) {
       return "Not a Number";
@@ -60,7 +60,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
       fuelStatus.innerHTML = "Fuel level too low for launch";
       list.style.visibility = "visible";
       launchStatus.innerHTML = "Shuttle Not Ready for Launch";
-      launchStatus.style.color = "red";
+      launchStatus.style.color = "rgb(199, 37, 78)";
    } else if ((cargoLevel) > 10000) {
       cargoStatus.innerHTML = "Cargo mass too high for launch";
       list.style.visibility = "visible";
