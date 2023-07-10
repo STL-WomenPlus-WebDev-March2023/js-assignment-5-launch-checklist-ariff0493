@@ -41,6 +41,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
    let fuelStatus = document.getElementById("fuelStatus");
    let cargoStatus = document.getElementById("cargoStatus");
    list = document.getElementById("faultyItems");
+   let launchStatus = document.getElementById("launchStatus");
 
    if (validateInput(pilot) === "Empty" || validateInput(copilot) === "Empty" || validateInput(fuelLevel) === "Empty" || validateInput(cargoLevel) === "Empty") {
       alert("All fields are required!");
@@ -49,6 +50,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
    } else {
       pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
       copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`;
+      list.style.visibility = "hidden";
    }
 // Below I have also created another if else statement to test if the fuel level and cargo level are at appropriate levels to launch the shuttle.
 // If the values entered are too high or low a message will return inside of the list variable and the launch status will change to red.
@@ -59,12 +61,15 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
       launchStatus.style.color = "red";
    } else if ((cargoLevel) > 10000) {
       cargoStatus.innerHTML = "Cargo mass too high for launch";
-      faultyItems.style.visibility = "visible";
+      list.style.visibility = "visible";
       launchStatus.innerHTML = "Shuttle not ready for launch";
       launchStatus.style.color = "red";
    } else if (cargoLevel < 10000 && fuelLevel > 10000) {
-      launchStatus.innerHTML = "Shuttle is ready for launch";
-      launchStatus.style.color = "green";
+    list.style.visibility = "visible";
+    fuelStatus.innerHTML = "Fuel level high enough for launch";
+    cargoStatus.innerHTML = "Cargo mass low enough for launch";
+    launchStatus.innerHTML = "Shuttle is ready for launch";
+    launchStatus.style.color = "green";
    }
 
    }
